@@ -28,4 +28,6 @@ when "runit"
   include_recipe "redis::_server_runit"
 when "init"
   include_recipe "redis::_server_init"
+when "supervisor"
+  include_recipe "redis::_server_supervisor"
 end

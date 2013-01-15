@@ -20,5 +20,10 @@ template "#{node['redis']['conf_dir']}/redis.conf" do
   group "root"
   mode 0644
   variables node['redis']['config']
-  notifies :restart, "service[redis]", :immediate
+  case node['redis']['init_style'] 
+  when 'init'
+    notifies :restart, "service[redis]", :immediate
+  when 'supervisor'
+    notifies :restart, "supervisor_service[redis]"
+  end
 end
